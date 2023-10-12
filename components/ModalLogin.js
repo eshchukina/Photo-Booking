@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Modal,
   View,
@@ -8,8 +8,10 @@ import {
   StyleSheet,
   TouchableWithoutFeedback,
   TouchableHighlight,
+   Animated,
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome5";
+import * as Animatable from "react-native-animatable";
 
 import Close from "react-native-vector-icons/AntDesign";
 import { isEmailValid, isPasswordValid, isNameValid } from "./Validation";
@@ -38,10 +40,6 @@ export default function ModalLogin({
 
   const handlePressOut = () => {
     setIsPressed(false);
-  };
-
-  const handlePressIn1 = () => {
-    setIsPressed1(true);
   };
 
   const handlePressOut1 = () => {
@@ -74,6 +72,41 @@ export default function ModalLogin({
       setPasswordError("");
       return;
     }
+  };
+
+
+  const scrollX = new Animated.Value(0);
+
+  useEffect(() => {
+    Animated.loop(
+      Animated.timing(scrollX, {
+        toValue: 100,
+        duration: 3000,
+        useNativeDriver: false,
+      })
+    ).start();
+  }, []);
+
+  const handleButtonClick = () => {
+    setSelectedComponent("dashboard");
+  };
+
+  const zoomOut = {
+    0: {
+      opacity: 0,
+      scale: 0.5,
+      translateX: 0,
+    },
+    0.5: {
+      opacity: 0.7,
+      scale: 0.7,
+      translateX: 0,
+    },
+    1: {
+      opacity: 1,
+      scale: 1,
+      translateX: 0,
+    },
   };
 
   return (
@@ -164,7 +197,7 @@ export default function ModalLogin({
             onPressOut={handlePressOut}
             onPress={handleFormSubmit}
           >
-            <Text style={styles.buttonText}>register</Text>
+          <Animatable.Text animation={zoomOut} style={styles.buttonText}>register</Animatable.Text>
           </TouchableHighlight>
 
           <TouchableHighlight
@@ -180,9 +213,9 @@ export default function ModalLogin({
               handleCloseModal();
             }}
           >
-            <Text style={styles.buttonText}>
+               <Animatable.Text animation={zoomOut}  style={styles.buttonText}>
               <Close name="close" size={30} />
-            </Text>
+              </Animatable.Text>
           </TouchableHighlight>
         </View>
       </View>

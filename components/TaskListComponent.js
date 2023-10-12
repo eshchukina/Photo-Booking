@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 
-import { ScrollView, Text, View, StyleSheet, Image } from "react-native";
+import { ScrollView, Text, View, StyleSheet, Image,  Animated } from "react-native";
 import TaskModal from "./TaskModal";
 import SelectDropdown from "react-native-select-dropdown";
 import Arrow from "react-native-vector-icons/MaterialIcons";
+import * as Animatable from "react-native-animatable";
 
 const countries = ["done", "cancel"];
 
@@ -65,9 +66,47 @@ export default function TaskListComponent({ date }) {
     );
     setTasks(updatedTasks);
   };
+
+
+  const scrollX = new Animated.Value(0);
+
+  useEffect(() => {
+    Animated.loop(
+      Animated.timing(scrollX, {
+        toValue: 100,
+        duration: 3000,
+        useNativeDriver: false,
+      })
+    ).start();
+  }, []);
+
+  const handleButtonClick = () => {
+    setSelectedComponent("dashboard");
+  };
+
+  const zoomOut = {
+    0: {
+      opacity: 0,
+      scale: 0.5,
+      translateX: 0,
+    },
+    0.5: {
+      opacity: 0.7,
+      scale: 0.7,
+      translateX: 0,
+    },
+    1: {
+      opacity: 1,
+      scale: 1,
+      translateX: 0,
+    },
+  };
+
+
   return (
     <ScrollView>
-      <Image
+       <Animatable.Image
+          animation={zoomOut}
         source={require("../assets/schedule.png")}
         style={{
           width: 100,

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Modal,
   View,
@@ -10,14 +10,13 @@ import {
   StyleSheet,
   Platform,
   ScrollView,
+  Animated,
 } from "react-native";
 
 import SelectDropdown from "react-native-select-dropdown";
-
+import * as Animatable from "react-native-animatable";
 import Arrow from "react-native-vector-icons/MaterialCommunityIcons";
-
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-
 import { isEmailValid, isPasswordValid, isNameValid } from "./Validation";
 
 export default function LocationModal({
@@ -100,10 +99,47 @@ export default function LocationModal({
     }
   };
 
+
+  const scrollX = new Animated.Value(0);
+
+  useEffect(() => {
+    Animated.loop(
+      Animated.timing(scrollX, {
+        toValue: 100,
+        duration: 3000,
+        useNativeDriver: false,
+      })
+    ).start();
+  }, []);
+
+  const handleButtonClick = () => {
+    setSelectedComponent("dashboard");
+  };
+
+  const zoomOut = {
+    0: {
+      opacity: 0,
+      scale: 0.5,
+      translateX: 0,
+    },
+    0.5: {
+      opacity: 0.7,
+      scale: 0.7,
+      translateX: 0,
+    },
+    1: {
+      opacity: 1,
+      scale: 1,
+      translateX: 0,
+    },
+  };
+
+
   return (
     <Modal visible={isVisible} animationType="fade">
       <View style={styles.modalContainer}>
-        <Image
+      <Animatable.Image
+          animation={zoomOut}
           source={require("../assets/location.png")}
           style={{
             width: 300,
@@ -216,7 +252,7 @@ export default function LocationModal({
             style={styles.button}
             onPress={handleAddTask}
           >
-            <Text style={styles.buttonText}>add</Text>
+              <Animatable.Text animation={zoomOut} style={styles.buttonText}>add</Animatable.Text>
           </Pressable>
 
           <Pressable
@@ -225,7 +261,7 @@ export default function LocationModal({
             android_ripple={{ color: "rgba(0, 0, 0, 0.1)" }}
             onPress={handleCloseModal}
           >
-            <Text style={styles.buttonText}>close</Text>
+           <Animatable.Text animation={zoomOut} style={styles.buttonText}>close</Animatable.Text>
           </Pressable>
         </View>
       </View>

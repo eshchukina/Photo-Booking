@@ -1,5 +1,6 @@
-import React from "react";
-import { Modal, View, Text, StyleSheet, Image, Pressable } from "react-native";
+import React, { useEffect } from "react";
+import { Modal, View, Text, StyleSheet, Image, Pressable, Animated } from "react-native";
+import * as Animatable from "react-native-animatable";
 
 export default function TaskModal({ visible, task, onClose, onDelete }) {
   const handleDelete = () => {
@@ -9,12 +10,50 @@ export default function TaskModal({ visible, task, onClose, onDelete }) {
 
   const handleEdit = () => {};
 
+
+  const scrollX = new Animated.Value(0);
+
+  useEffect(() => {
+    Animated.loop(
+      Animated.timing(scrollX, {
+        toValue: 100,
+        duration: 3000,
+        useNativeDriver: false,
+      })
+    ).start();
+  }, []);
+
+  const handleButtonClick = () => {
+    setSelectedComponent("dashboard");
+  };
+
+  const zoomOut = {
+    0: {
+      opacity: 0,
+      scale: 0.5,
+      translateX: 0,
+    },
+    0.5: {
+      opacity: 0.7,
+      scale: 0.7,
+      translateX: 0,
+    },
+    1: {
+      opacity: 1,
+      scale: 1,
+      translateX: 0,
+    },
+  };
+
+
+
   return (
     <Modal visible={visible} animationType="slide">
       <View style={styles.modalContainer}>
         {task && (
           <>
-            <Image
+            <Animatable.Image
+          animation={zoomOut}
               source={require("../assets/info.png")}
               style={{
                 width: 300,
@@ -35,7 +74,8 @@ export default function TaskModal({ visible, task, onClose, onDelete }) {
             </Text>
             <Text style={styles.modalText}>date of completion: </Text>
             <Text style={styles.modalText}>notes: </Text>
-            <Image
+            <Animatable.Image
+          animation={zoomOut}
               source={require("../assets/pattern.png")}
               style={{
                 width: 200,
@@ -46,16 +86,16 @@ export default function TaskModal({ visible, task, onClose, onDelete }) {
 
             <View style={styles.modalButtons}>
               <Pressable style={styles.button} onPress={handleDelete}>
-                <Text style={styles.buttonText}>delete</Text>
+              <Animatable.Text animation={zoomOut}style={styles.buttonText}>delete</Animatable.Text>
               </Pressable>
 
               <Pressable style={styles.button} onPress={handleDelete}>
-                <Text style={styles.buttonText} onPress={onClose}>
+              <Animatable.Text animation={zoomOut}  style={styles.buttonText} onPress={onClose}>
                   close
-                </Text>
+                  </Animatable.Text>
               </Pressable>
               <Pressable style={styles.button} onPress={handleEdit}>
-                <Text style={styles.buttonText}>edit</Text>
+              <Animatable.Text animation={zoomOut}  style={styles.buttonText}>edit</Animatable.Text>
               </Pressable>
             </View>
           </>

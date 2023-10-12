@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Modal,
   View,
@@ -7,9 +7,11 @@ import {
   Pressable,
   StyleSheet,
   TouchableWithoutFeedback,
-  TouchableHighlight,
+  TouchableHighlight, 
+   Animated,
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome5";
+import * as Animatable from "react-native-animatable";
 
 import Close from "react-native-vector-icons/AntDesign";
 import { isEmailValid, isPasswordValid } from "./Validation";
@@ -71,6 +73,43 @@ export default function ModalSingIn({
       return;
     }
   };
+
+
+
+  const scrollX = new Animated.Value(0);
+
+  useEffect(() => {
+    Animated.loop(
+      Animated.timing(scrollX, {
+        toValue: 100,
+        duration: 3000,
+        useNativeDriver: false,
+      })
+    ).start();
+  }, []);
+
+  const handleButtonClick = () => {
+    setSelectedComponent("dashboard");
+  };
+
+  const zoomOut = {
+    0: {
+      opacity: 0,
+      scale: 0.5,
+      translateX: 0,
+    },
+    0.5: {
+      opacity: 0.7,
+      scale: 0.7,
+      translateX: 0,
+    },
+    1: {
+      opacity: 1,
+      scale: 1,
+      translateX: 0,
+    },
+  };
+
 
   return (
     <Modal animationType="fade" transparent={true} visible={visible}>
@@ -149,7 +188,7 @@ export default function ModalSingIn({
             onPressOut={handlePressOut}
             onPress={handleFormSubmit}
           >
-            <Text style={styles.buttonText}>create</Text>
+           <Animatable.Text animation={zoomOut} style={styles.buttonText}>create</Animatable.Text>
           </TouchableHighlight>
 
           <TouchableHighlight
@@ -166,9 +205,9 @@ export default function ModalSingIn({
               handlePressIn1();
             }}
           >
-            <Text style={styles.buttonText}>
+           <Animatable.Text animation={zoomOut} style={styles.buttonText}>
               <Close name="close" size={30} />
-            </Text>
+              </Animatable.Text>
           </TouchableHighlight>
         </View>
       </View>

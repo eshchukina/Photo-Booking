@@ -93,6 +93,7 @@ const styles = StyleSheet.create({
     flex: 1,
     fontFamily: "vidaloka",
     backgroundColor: "#71798e",
+    
   },
   container1: {
     flex: 9,
@@ -118,7 +119,6 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   heading: {
-    fontFamily: "vidaloka",
     fontSize: 24,
     fontWeight: "bold",
     marginBottom: 20,

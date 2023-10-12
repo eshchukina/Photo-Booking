@@ -5,7 +5,8 @@ import {
   StyleSheet,
   TouchableHighlight,
   Linking,
-  Pressable,
+  Pressable,  
+  Animated,
   Share as ShareModule,
 } from "react-native";
 
@@ -14,6 +15,7 @@ import Exit from "react-native-vector-icons/MaterialCommunityIcons";
 import Mail from "react-native-vector-icons/AntDesign";
 import Share from "react-native-vector-icons/Entypo";
 import Color from "react-native-vector-icons/Ionicons";
+import * as Animatable from "react-native-animatable";
 
 import ThemePickerModal from "./ThemePickerModal";
 
@@ -24,6 +26,22 @@ export default function PersonalCabinet({ setSelectedComponent }) {
 
   const handleAddTask = () => {
     setAddTaskModalVisible(true);
+  };
+
+  const scrollX = new Animated.Value(0);
+
+  useEffect(() => {
+    Animated.loop(
+      Animated.timing(scrollX, {
+        toValue: 100,
+        duration: 3000,
+        useNativeDriver: false,
+      })
+    ).start();
+  }, []);
+
+  const handleButtonClick = () => {
+    setSelectedComponent("dashboard");
   };
 
   const zoomOut = {
@@ -94,9 +112,9 @@ export default function PersonalCabinet({ setSelectedComponent }) {
       <View style={styles.container1}>
         <View style={styles.userPhotoContainer}>
           <Pressable>
-            <Text style={styles.buttonImage}>
+          <Animatable.Text animation={zoomOut} style={styles.buttonImage}>
               <Icon name="photo-video" size={50} />
-            </Text>
+              </Animatable.Text>
           </Pressable>
         </View>
         <Text style={styles.heading}>Personal Cabinet</Text>
@@ -111,9 +129,9 @@ export default function PersonalCabinet({ setSelectedComponent }) {
               onPressOut={handlePressOut}
               onPress={sendEmail}
             >
-              <Text style={styles.iconText}>
+          <Animatable.Text animation={zoomOut}  style={styles.iconText}>
                 <Mail name="mail" size={25} />
-              </Text>
+                </Animatable.Text>
             </TouchableHighlight>
 
             <TouchableHighlight
@@ -123,9 +141,9 @@ export default function PersonalCabinet({ setSelectedComponent }) {
               onPressOut={handlePressOut}
               onPress={shareApp}
             >
-              <Text style={styles.iconText}>
+             <Animatable.Text animation={zoomOut} style={styles.iconText}>
                 <Share name="share" size={25} />
-              </Text>
+                </Animatable.Text>
             </TouchableHighlight>
 
             <TouchableHighlight
@@ -134,18 +152,18 @@ export default function PersonalCabinet({ setSelectedComponent }) {
               onPressIn={handlePressIn}
               onPressOut={handlePressOut}
             >
-              <Text style={styles.iconText}>
+           <Animatable.Text animation={zoomOut} style={styles.iconText}>
                 <Exit name="exit-run" size={25} />
-              </Text>
+                </Animatable.Text>
             </TouchableHighlight>
             <TouchableHighlight
               underlayColor="#b8a69b"
               style={styles.button}
               onPress={toggleThemeModal}
             >
-              <Text style={styles.iconText}>
+              <Animatable.Text animation={zoomOut} style={styles.iconText}>
                 <Color name="color-palette-outline" size={25} />
-              </Text>
+                </Animatable.Text>
             </TouchableHighlight>
             <ThemePickerModal
               themeModalVisible={themeModalVisible}

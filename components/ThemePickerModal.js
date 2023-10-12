@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Modal,
   View,
   StyleSheet,
   Image,
   Text,
-  Pressable,
+  Pressable,  
+  Animated,
   TouchableHighlight,
 } from "react-native";
 import Close from "react-native-vector-icons/AntDesign";
+import * as Animatable from "react-native-animatable";
 
 export default function ThemePickerModal({
   themeModalVisible,
@@ -16,6 +18,44 @@ export default function ThemePickerModal({
   selectedTheme,
   setSelectedTheme,
 }) {
+
+
+
+  const scrollX = new Animated.Value(0);
+
+  useEffect(() => {
+    Animated.loop(
+      Animated.timing(scrollX, {
+        toValue: 100,
+        duration: 3000,
+        useNativeDriver: false,
+      })
+    ).start();
+  }, []);
+
+  const handleButtonClick = () => {
+    setSelectedComponent("dashboard");
+  };
+
+  const zoomOut = {
+    0: {
+      opacity: 0,
+      scale: 0.5,
+      translateX: 0,
+    },
+    0.5: {
+      opacity: 0.7,
+      scale: 0.7,
+      translateX: 0,
+    },
+    1: {
+      opacity: 1,
+      scale: 1,
+      translateX: 0,
+    },
+  };
+
+
   return (
     <Modal
       visible={themeModalVisible}
@@ -31,7 +71,8 @@ export default function ThemePickerModal({
             //  android_ripple={{ color: 'rgba(0, 0, 0, 0.1)' }}
             style={styles.button}
           >
-            <Image
+            <Animatable.Image
+          animation={zoomOut}
               source={require("../assets/theme.png")}
               style={{
                 width: 150,
@@ -48,7 +89,8 @@ export default function ThemePickerModal({
 
             style={styles.button}
           >
-            <Image
+            <Animatable.Image
+          animation={zoomOut}
               source={require("../assets/theme2.png")}
               style={{
                 width: 150,
@@ -64,9 +106,9 @@ export default function ThemePickerModal({
             style={styles.closeButton}
             onPress={toggleThemeModal}
           >
-            <Text style={styles.buttonText}>
+           <Animatable.Text animation={zoomOut}  style={styles.buttonText}>
               <Close name="close" size={30} />
-            </Text>
+              </Animatable.Text>
           </TouchableHighlight>
         </View>
       </View>

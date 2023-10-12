@@ -7,6 +7,8 @@ import {
   TouchableHighlight,
 } from "react-native";
 
+import * as Animatable from "react-native-animatable";
+
 import LocationModal from "./LocationModal";
 import ClientModal from "./ClientModal";
 import Location from "react-native-vector-icons/SimpleLineIcons";
@@ -16,6 +18,8 @@ export default function AppendComponent({ setSelectedComponent }) {
   const scrollX = new Animated.Value(0);
   const [isLocationModalVisible, setLocationModalVisible] = useState(false);
   const [isClientModalVisible, setClientModalVisible] = useState(false);
+
+
   useEffect(() => {
     Animated.loop(
       Animated.timing(scrollX, {
@@ -26,6 +30,27 @@ export default function AppendComponent({ setSelectedComponent }) {
     ).start();
   }, []);
 
+  const handleButtonClick = () => {
+    setSelectedComponent("dashboard");
+  };
+
+  const zoomOut = {
+    0: {
+      opacity: 0,
+      scale: 0.5,
+      translateX: 0,
+    },
+    0.5: {
+      opacity: 0.7,
+      scale: 0.7,
+      translateX: 0,
+    },
+    1: {
+      opacity: 1,
+      scale: 1,
+      translateX: 0,
+    },
+  };
   return (
     <View style={styles.container}>
       <View style={styles.container1}>
@@ -37,9 +62,9 @@ export default function AppendComponent({ setSelectedComponent }) {
               style={styles.button}
               onPress={() => setLocationModalVisible(true)}
             >
-              <Text style={styles.iconText}>
+              <Animatable.Text animation={zoomOut} style={styles.iconText}>
                 <Location name="location-pin" size={30} />
-              </Text>
+                </Animatable.Text>
             </TouchableHighlight>
           </View>
 
@@ -50,9 +75,9 @@ export default function AppendComponent({ setSelectedComponent }) {
               style={styles.button}
               onPress={() => setClientModalVisible(true)}
             >
-              <Text style={styles.iconText}>
+               <Animatable.Text animation={zoomOut}style={styles.iconText}>
                 <Client name="addusergroup" size={30} />
-              </Text>
+                </Animatable.Text>
             </TouchableHighlight>
           </View>
           <LocationModal

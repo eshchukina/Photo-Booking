@@ -1,9 +1,44 @@
-import React from "react";
-import { View, TouchableHighlight, Modal, Text, Pressable } from "react-native";
+import React, { useEffect } from "react";
+import { View, TouchableHighlight, Modal, Text,   Animated, Pressable } from "react-native";
 
 import Close from "react-native-vector-icons/AntDesign";
+import * as Animatable from "react-native-animatable";
 
 const BurgerMenu = ({ closeModal, isMenuVisible, handleEmptySpacePress }) => {
+  const scrollX = new Animated.Value(0);
+
+  useEffect(() => {
+    Animated.loop(
+      Animated.timing(scrollX, {
+        toValue: 100,
+        duration: 3000,
+        useNativeDriver: false,
+      })
+    ).start();
+  }, []);
+
+  const handleButtonClick = () => {
+    setSelectedComponent("dashboard");
+  };
+
+  const zoomOut = {
+    0: {
+      opacity: 0,
+      scale: 0.5,
+      translateX: 0,
+    },
+    0.5: {
+      opacity: 0.7,
+      scale: 0.7,
+      translateX: 0,
+    },
+    1: {
+      opacity: 1,
+      scale: 1,
+      translateX: 0,
+    },
+  };
+
   const openLoginModal = () => {
     closeModal("login");
   };
@@ -37,13 +72,13 @@ const BurgerMenu = ({ closeModal, isMenuVisible, handleEmptySpacePress }) => {
             </Text>
           </Pressable>
           <TouchableHighlight
-            underlayColor="#c4661f"
+              underlayColor="#604d3c"
             style={[styles.buttonInfo]}
             onPress={handleEmptySpacePress}
           >
-            <Text style={styles.iconText}>
+          <Animatable.Text animation={zoomOut} style={styles.iconText}>
               <Close name="close" size={30} />
-            </Text>
+              </Animatable.Text>
           </TouchableHighlight>
         </View>
       </View>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Modal,
   View,
@@ -9,16 +9,54 @@ import {
   FlatList,
   StyleSheet,
   Platform,
+  Animated,
   ScrollView,
 } from "react-native";
 import Delete from "react-native-vector-icons/AntDesign";
 import { isNameValid } from "./Validation";
+
+import * as Animatable from "react-native-animatable";
+
+
 
 export default function ClientModal({ isVisible, onClose, onAdd }) {
   const [name, setName] = useState("");
   const [note, setNote] = useState("");
   const [nameError, setNameError] = useState("");
   const [clients, setClients] = useState([]);
+  const scrollX = new Animated.Value(0);
+
+  useEffect(() => {
+    Animated.loop(
+      Animated.timing(scrollX, {
+        toValue: 100,
+        duration: 3000,
+        useNativeDriver: false,
+      })
+    ).start();
+  }, []);
+
+  const handleButtonClick = () => {
+    setSelectedComponent("dashboard");
+  };
+
+  const zoomOut = {
+    0: {
+      opacity: 0,
+      scale: 0.5,
+      translateX: 0,
+    },
+    0.5: {
+      opacity: 0.7,
+      scale: 0.7,
+      translateX: 0,
+    },
+    1: {
+      opacity: 1,
+      scale: 1,
+      translateX: 0,
+    },
+  };
 
   const handleAddTask = () => {
     if (!isNameValid(name)) {
@@ -47,7 +85,8 @@ export default function ClientModal({ isVisible, onClose, onAdd }) {
   return (
     <Modal visible={isVisible} animationType="fade">
       <View style={styles.modalContainer}>
-        <Image
+      <Animatable.Image
+          animation={zoomOut}
           source={require("../assets/client.png")}
           style={{
             width: 300,
@@ -101,15 +140,11 @@ export default function ClientModal({ isVisible, onClose, onAdd }) {
 
         <View style={styles.modalButtons}>
           <Pressable style={styles.button} onPress={handleAddTask}>
-            <Text style={styles.buttonText}>Add</Text>
+          <Animatable.Text animation={zoomOut} style={styles.buttonText}>add</Animatable.Text>
           </Pressable>
-          <Pressable
-            style={styles.button}
-            activeOpacity={Platform.OS === "ios" ? 0.58 : null}
-            android_ripple={{ color: "rgba(0, 0, 0, 0.1)" }}
-            onPress={handleCloseModal}
-          >
-            <Text style={styles.buttonText}>Close</Text>
+          <Pressable style={styles.button} onPress={handleCloseModal}>
+
+          <Animatable.Text animation={zoomOut} style={styles.buttonText}>close</Animatable.Text>
           </Pressable>
         </View>
       </View>
