@@ -30,3 +30,14 @@ In summary, our React Native application is an indispensable tool for photograph
 efficient than ever. With features such as location management, studio listings, client databases, and session card generation, photographers can elevate their professionalism and offer clients a 
 seamless and convenient booking experience. Say goodbye to manual administrative tasks and enjoy the benefits of our comprehensive photo session booking app.
 
+![screenshot 1](https://github.com/eshchukina/Photo-Booking/blob/main/screenshots/Screenshot_20231013_101647.png)
+![screenshot 2](https://github.com/eshchukina/Photo-Booking/blob/main/screenshots/Screenshot_20231013_101740.png)
+![screenshot 3](https://github.com/eshchukina/Photo-Booking/blob/main/screenshots/Screenshot_20231013_101754.png)
+![screenshot 4](https://github.com/eshchukina/Photo-Booking/blob/main/screenshots/Screenshot_20231013_101809.png)
+![screenshot 5](https://github.com/eshchukina/Photo-Booking/blob/main/screenshots/Screenshot_20231013_101957.png)
+![screenshot 6](https://github.com/eshchukina/Photo-Booking/blob/main/screenshots/Screenshot_20231013_102026.png)
+![screenshot 7](https://github.com/eshchukina/Photo-Booking/blob/main/screenshots/Screenshot_20231013_102045.png)
+![screenshot 8](https://github.com/eshchukina/Photo-Booking/blob/main/screenshots/Screenshot_20231013_102059.png)
+![screenshot 9](https://github.com/eshchukina/Photo-Booking/blob/main/screenshots/Screenshot_20231013_102116.png)
+![screenshot 10](https://github.com/eshchukina/Photo-Booking/blob/main/screenshots/Screenshot_20231013_102124.png)
+![screenshot 11](https://github.com/eshchukina/Photo-Booking/blob/main/screenshots/Screenshot_20231013_102145.png)
