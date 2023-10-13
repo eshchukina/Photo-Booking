@@ -1,4 +1,5 @@
 Photo-Booking react native
+(in the app development process, an intermediate version is being presented)
 
 Photo Planner app for photographers
 
