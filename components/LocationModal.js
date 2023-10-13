@@ -247,7 +247,7 @@ export default function LocationModal({
 
         <View style={styles.modalButtons}>
           <Pressable
-            activeOpacity={Platform.OS === "ios" ? 0.58 : null}
+            // activeOpacity={Platform.OS === "ios" ? 0.58 : null}
             android_ripple={{ color: "rgba(0, 0, 0, 0.1)" }}
             style={styles.button}
             onPress={handleAddTask}
@@ -257,8 +257,7 @@ export default function LocationModal({
 
           <Pressable
             style={styles.button}
-            activeOpacity={Platform.OS === "ios" ? 0.58 : null}
-            android_ripple={{ color: "rgba(0, 0, 0, 0.1)" }}
+      
             onPress={handleCloseModal}
           >
            <Animatable.Text animation={zoomOut} style={styles.buttonText}>close</Animatable.Text>

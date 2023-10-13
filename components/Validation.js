@@ -16,6 +16,9 @@ export const isEmailValid = (email) => {
     return name.trim() !== ''; 
   };
 
-
+  export const isInputValid = (input) => {
+    return password.length >= 6; 
+  };
+  
 
   

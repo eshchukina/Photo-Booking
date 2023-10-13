@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, View, Pressable, Animated } from "react-native";
 
-import AddTaskModal from "./AddTaskModal"; 
+import AddPhotoshootModal from "./AddPhotoshootModal"; 
 
 import CalendarComponent from "./CalendarComponent";
 
@@ -63,7 +63,7 @@ export default function Dashboard({ setSelectedComponent }) {
       <View style={styles.container3}></View>
 
 
-      <AddTaskModal
+      <AddPhotoshootModal
         visible={isAddTaskModalVisible}
         onCancel={() => setAddTaskModalVisible(false)}
         onAdd={(newTask) => {

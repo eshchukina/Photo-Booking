@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
-import TaskListComponent from "./TaskListComponent";
+import PhotosessionsList from "./PhotosessionsList";
 
 import CalendarPicker from "react-native-calendar-picker";
 
@@ -47,7 +47,7 @@ export default function CalendarComponent() {
         textStyle={{ color: "#604d3c" }}
         selectedDayTextColor="#d5d3d5"
       />
-      {selectedDate && <TaskListComponent date={selectedDate} />}
+      {selectedDate && <PhotosessionsList date={selectedDate} />}
     </View>
   );
 }

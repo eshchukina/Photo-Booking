@@ -5,7 +5,7 @@ import * as SplashScreen from "expo-splash-screen";
 import DownloadPage from "./components/DownloadPage";
 import Dashboard from "./components/Dashboard";
 import Footer from "./components/Footer";
-import AppendComponent from "./components/AppendComponent";
+import AddNewItem from "./components/AddNewItem";
 import * as Font from "expo-font";
 import PersonalCabinet from "./components/PersonalCabinet";
 import Info from "./components/Info";
@@ -66,7 +66,7 @@ export default function App() {
               setSelectedComponent={setSelectedComponent}
               toggleComponent={toggleComponent}
             />
-            <AppendComponent setSelectedComponent={setSelectedComponent} />
+            <AddNewItem setSelectedComponent={setSelectedComponent} />
             <Footer
               setSelectedComponent={setSelectedComponent}
               toggleComponent={toggleComponent}

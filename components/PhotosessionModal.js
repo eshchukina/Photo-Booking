@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Modal, View, Text, StyleSheet, Image, Pressable, Animated } from "react-native";
 import * as Animatable from "react-native-animatable";
 
-export default function TaskModal({ visible, task, onClose, onDelete }) {
+export default function PhotosessionModal({ visible, task, onClose, onDelete }) {
   const handleDelete = () => {
     onDelete(task);
     onClose();

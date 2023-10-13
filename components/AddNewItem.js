@@ -14,7 +14,7 @@ import ClientModal from "./ClientModal";
 import Location from "react-native-vector-icons/SimpleLineIcons";
 import Client from "react-native-vector-icons/AntDesign";
 
-export default function AppendComponent({ setSelectedComponent }) {
+export default function AddNewItem({ setSelectedComponent }) {
   const scrollX = new Animated.Value(0);
   const [isLocationModalVisible, setLocationModalVisible] = useState(false);
   const [isClientModalVisible, setClientModalVisible] = useState(false);

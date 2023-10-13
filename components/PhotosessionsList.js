@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 
 import { ScrollView, Text, View, StyleSheet, Image,  Animated } from "react-native";
-import TaskModal from "./TaskModal";
+import PhotosessionModal from "./PhotosessionModal";
 import SelectDropdown from "react-native-select-dropdown";
 import Arrow from "react-native-vector-icons/MaterialIcons";
 import * as Animatable from "react-native-animatable";
 
 const countries = ["done", "cancel"];
 
-export default function TaskListComponent({ date }) {
+export default function PhotosessionsList({ date }) {
   const [tasks, setTasks] = useState([
     {
       startDate: "11:00",
@@ -175,7 +175,7 @@ export default function TaskListComponent({ date }) {
         </View>
       ))}
 
-      <TaskModal
+      <PhotosessionModal
         visible={modalVisible}
         task={selectedTask}
         onDelete={handleDelete}

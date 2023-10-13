@@ -12,7 +12,7 @@ import {
 
 import * as Animatable from "react-native-animatable";
 
-export default function AddTaskModal({ visible, onAdd, onCancel }) {
+export default function AddPhotoshootModal({ visible, onAdd, onCancel }) {
   const [newTask, setNewTask] = useState({
     clientName: "",
     locationName: "",
@@ -94,6 +94,7 @@ export default function AddTaskModal({ visible, onAdd, onCancel }) {
 
         <View style={styles.inputContainer}>
           <Text style={styles.label}>client name:</Text>
+          
         </View>
         <View style={styles.inputContainer}>
           <Text style={styles.label}>location name:</Text>
